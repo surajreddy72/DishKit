@@ -9,4 +9,9 @@
 }
 .navbar .profile{
     width: 40px;
+    /* width: 40px; */
+    height: 40px;
+    border-radius: 50%; /* Make the image round */
+    object-fit: cover; /* Ensure the image covers the entire area */
+    /* Add any additional styles you need for the profile image */
 }

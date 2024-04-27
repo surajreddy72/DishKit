@@ -9,7 +9,7 @@ const FoodItem = ({ image, name, price, desc, id }) => {
 
     const handleClick = () => {
         console.log(`Clicked on item: ${name}`); // Log the clicked item's name
-        if (name === 'Biryani') {
+        if (name === 'Veg sandwich') {
             // Navigate to another page
             window.location.href = '/HyderabadiChickenBiryani'; // Change '/other-page' to the actual URL of the other page
         } else {
