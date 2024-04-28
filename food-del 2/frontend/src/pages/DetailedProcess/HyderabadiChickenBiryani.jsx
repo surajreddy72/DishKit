@@ -14,27 +14,30 @@ import './styles.css';
 // Register Chart.js elements and plugins
 Chart.register(ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale);
 
-// Register Chart.js elements and plugins
-Chart.register(ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale);
-
 const HyderabadiChickenBiryani = () => {
   const initialIngredients = [
-    { name: 'Chicken', quantity: 500 },
-    { name: 'Yogurt', quantity: 200 },
-    { name: 'Ground spices', quantity: 20 },
-    { name: 'Salt', quantity: 10 },
-    { name: 'Lemon juice', quantity: 15 },
-    { name: 'Ginger garlic paste', quantity: 30 },
-    { name: 'Basmati rice', quantity: 250 },
-    { name: 'Whole spices', quantity: 5 },
-    { name: 'Saffron water', quantity: 5 },
-    { name: 'Fried onions', quantity: 50 },
-    { name: 'Herbs', quantity: 10 },
-    { name: 'Ghee', quantity: 30 },
+    { name: 'Chicken', base_quantity: 500 },
+    { name: 'Yogurt', base_quantity: 200 },
+    { name: 'Ground spices', base_quantity: 20 },
+    { name: 'Salt', base_quantity: 10 },
+    { name: 'Lemon juice', base_quantity: 15 },
+    { name: 'Ginger garlic paste', base_quantity: 30 },
+    { name: 'Basmati rice', base_quantity: 250 },
+    { name: 'Whole spices', base_quantity: 5 },
+    { name: 'Saffron water', base_quantity: 5 },
+    { name: 'Fried onions', base_quantity: 50 },
+    { name: 'Herbs', base_quantity: 10 },
+    { name: 'Ghee', base_quantity: 30 },
   ];
 
-  const [ingredients, setIngredients] = useState(initialIngredients);
-  const [nutrientPieChart, setNutrientPieChart] = useState(null);
+  const [count, setCount] = useState(1);
+  const [ingredients, setIngredients] = useState(
+    initialIngredients.map((ingredient) => ({
+      ...ingredient,
+      quantity: ingredient.base_quantity,
+    }))
+  );
+  const [nutrientPieChart, setNutrientPieChart] = useState(null);  // Initialize state
 
   const nutrientData = {
     chicken: { protein: 27, carbs: 0, fat: 14 },
@@ -76,12 +79,28 @@ const HyderabadiChickenBiryani = () => {
       ],
     };
 
-    setNutrientPieChart(pieData);
+    setNutrientPieChart(pieData);  // Assign pieData to nutrientPieChart
   };
 
   useEffect(() => {
-    calculateNutrients();
-  }, [ingredients]);
+    calculateNutrients();  // Call calculateNutrients when the ingredients change
+  }, [ingredients]);  // Effect hook dependency array
+
+  const updateQuantities = (newCount) => {
+    const updatedIngredients = ingredients.map((ingredient) => ({
+      ...ingredient,
+      quantity: ingredient.base_quantity * newCount,
+    }));
+    setIngredients(updatedIngredients);  // Update ingredient quantities
+  };
+
+  const handleCountChange = (e) => {
+    const newCount = parseInt(e.target.value);
+    if (newCount > 0) {
+      setCount(newCount);
+      updateQuantities(newCount);  // Ensure count is positive before updating
+    }
+  };
 
   return (
     <div className="container">
@@ -93,34 +112,36 @@ const HyderabadiChickenBiryani = () => {
           className="main-image"
         />
         <p className="image-caption">
-          A flavorful rice dish made with spices, rice, and chicken. This dish is a staple of Hyderabadi cuisine, known for its rich aroma, spicy taste, and delicate blend of rice with chicken.
+          A flavorful rice dish made with spices, rice, and chicken.
         </p>
       </div>
 
       <div className="content">
         <div className="ingredients">
           <h2>Ingredients:</h2>
+          <div className="count-container">
+            <label htmlFor="count">Count:</label>
+            <input
+              type="number"
+              id="count"
+              min="1"
+              value={count}
+              onChange={handleCountChange}
+            />
+          </div>
           <ul>
             {ingredients.map((ingredient, index) => (
               <li key={index}>
                 <input
                   type="text"
                   value={ingredient.name}
-                  onChange={(e) => {
-                    const newIngredients = [...ingredients];
-                    newIngredients[index].name = e.target.value;
-                    setIngredients(newIngredients);
-                  }}
+                  onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}
                 />
                 <input
                   type="number"
                   min="0"
                   value={ingredient.quantity}
-                  onChange={(e) => {
-                    const newIngredients = [...ingredients];
-                    newIngredients[index].quantity = parseFloat(e.target.value);
-                    setIngredients(newIngredients);
-                  }}
+                  onChange={(e) => handleIngredientChange(index, 'quantity', parseFloat(e.target.value))}
                 />
                 <button onClick={() => removeIngredient(index)}>Remove</button>
               </li>
@@ -129,23 +150,31 @@ const HyderabadiChickenBiryani = () => {
 
           <button
             className="add-ingredient"
-            onClick={() => setIngredients([...ingredients, { name: '', quantity: 0 }])}
+            onClick={() => setIngredients([...ingredients, { name: '', base_quantity: 0 }])}
           >
             Add Ingredient
           </button>
+
+          <button className="reset-button" onClick={() => setIngredients([...initialIngredients.map((ingredient) => ({...ingredient, quantity: ingredient.base_quantity}))])}>
+            Reset
+          </button>
+        </div>
+
+        <div className="nutrients-info">
+          {nutrientPieChart ? <Pie data={nutrientPieChart} /> : <p>Loading...</p>}
         </div>
 
         <div className="method">
           <h2>Method:</h2>
           <div className="method-steps">
             <p>
-              <strong>Marination:</strong> Combine chicken with yogurt, ground spices, salt, lemon juice, and ginger garlic paste. Marinate for a few hours or overnight.
+              <strong>Marination:</strong> Combine chicken with yogurt, ground spices, salt, lemon juice, and ginger garlic paste.
             </p>
             <p>
-              <strong>Rice Preparation:</strong> Cook basmati rice with whole spices and salt until it's 70-80% cooked, then drain.
+              <strong>Rice Preparation:</strong> Cook basmati rice with whole spices and salt until it's 70-80% cooked.
             </p>
             <p>
-              <strong>Layering:</strong> In a heavy-bottomed pot, add a layer of marinated chicken, then a layer of partially cooked rice. Sprinkle saffron water, fried onions, and herbs.
+              <strong>Layering:</strong> Add a layer of marinated chicken, then a layer of partially cooked rice. Sprinkle saffron water, fried onions, and herbs.
             </p>
             <p>
               <strong>Cooking (Dum):</strong> Seal the pot with a tight lid or dough to retain steam. Cook on low flame for about 20-25 minutes.
@@ -157,15 +186,11 @@ const HyderabadiChickenBiryani = () => {
         </div>
       </div>
 
-      <div className="nutrients-info">
-        {nutrientPieChart && <Pie data={nutrientPieChart} />}
-      </div>
-
       <div className="video-container">
         <h2>Video Tutorial</h2>
         <iframe
           src="https://www.youtube.com/embed/mFZkmjC2B3Y"
-          frameBorder="0"
+          // frameBorder="0"
           allowFullScreen
         ></iframe>
       </div>
@@ -174,3 +199,5 @@ const HyderabadiChickenBiryani = () => {
 };
 
 export default HyderabadiChickenBiryani;
+
+
