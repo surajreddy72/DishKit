@@ -232,7 +232,7 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
             Reset
           </button>
 
-          <button className='add' onClick={() => addToCart(("662e940fbf405e609283f83e"))}>Add to Cart</button>
+          <button className='add' onClick={() => addToCart(("662e998ecea12a61e9fa4c6c"))}>Add to Cart</button>
           
           {/* {!cartItems[id] ? (
                     <img className='add' onClick={() => addToCart(id)} src={assets.add_icon_white} alt='Add to Cart' />
