@@ -158,8 +158,6 @@ const HyderabadiChickenBiryani = () => {
           <button className="reset-button" onClick={() => setIngredients([...initialIngredients.map((ingredient) => ({...ingredient, quantity: ingredient.base_quantity}))])}>
             Reset
           </button>
-
-          <button className="addtocart" onClick={() => alert('Added to cart!')}>Add to Cart</button>
         </div>
 
         <div className="nutrients-info">
