@@ -110,7 +110,7 @@ const HyderabadiChickenBiryani = () => {
     <div className="container">
       <h1>Hyderabadi Chicken Biryani</h1>
       {loading ? (
-        <p>Loading...</p>  // Display a loading message during the delay
+        <p>Loading...</p>  
       ) : (
         <>
           <div className="image-container">

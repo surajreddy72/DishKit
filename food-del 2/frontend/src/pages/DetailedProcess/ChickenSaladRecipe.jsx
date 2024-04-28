@@ -202,8 +202,22 @@ const ChickenSaladRecipe = () => {
           </tbody>
         </table>
         <button className="add-ingredient" onClick={addIngredient}>Add Ingredient</button>
-      </div>
-
+ 
+      <button
+            className="reset-button"
+            onClick={() => {
+              setIngredients(
+                initialIngredients.map((ingredient) => ({
+                  ...ingredient,
+                  quantity: ingredient.base_quantity,
+                }))
+              );
+              setCount(1);  
+            }}
+          >
+            Reset
+          </button>
+          </div>
       <div className="nutrients-info">
         {nutrientPieChart ? (
           <div>
