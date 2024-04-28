@@ -1,12 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useContext, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale } from 'chart.js';
+import { StoreContext } from '../../Context/StoreContext';
+
+import { assets } from '../../assets/assets';
 
 import './cssforchickensalad.css';
 
 Chart.register(ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale);
 
-const ChickenSaladRecipe = () => {
+const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
+
+  useEffect(() => {
+    console.log(id); // Print id in the console
+  }, []); 
+
+
+  const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
+
   const initialIngredients = [
     { name: 'Chicken breast', quantity: 150 },
     { name: 'Celery', quantity: 30 },
@@ -20,11 +31,12 @@ const ChickenSaladRecipe = () => {
     { name: 'Salt', quantity: 0, unit: 'To taste' },
     { name: 'Black pepper', quantity: 0, unit: 'To taste' },
   ];
+  
 
   const [ingredients, setIngredients] = useState(initialIngredients);
   const [servingSize, setServingSize] = useState(1);
   const [nutrientPieChart, setNutrientPieChart] = useState(null);
-
+  
   const nutrientData = {
     'chicken breast': { protein: 31, carbs: 0, fat: 3.6 },
     'celery': { protein: 0.7, carbs: 3, fat: 0.2 },
@@ -86,6 +98,8 @@ const ChickenSaladRecipe = () => {
 
     setNutrientPieChart(pieData);
   };
+
+
 
   return (
     <div className="container">
@@ -217,7 +231,21 @@ const ChickenSaladRecipe = () => {
           >
             Reset
           </button>
+
+          <button className='add' onClick={() => addToCart(("662e940fbf405e609283f83e"))}>Add to Cart</button>
+          
+          {/* {!cartItems[id] ? (
+                    <img className='add' onClick={() => addToCart(id)} src={assets.add_icon_white} alt='Add to Cart' />
+                ) : (
+                    <div className='food-item-counter'>
+                        <img src={assets.remove_icon_red} onClick={() => removeFromCart(id)} alt='Remove from Cart' />
+                        <p>{cartItems[id]}</p>
+                        <img src={assets.add_icon_green} onClick={() => addToCart(id)} alt='Add to Cart' />
+                    </div>
+                )} */}
+          
           </div>
+          
       <div className="nutrients-info">
         {nutrientPieChart ? (
           <div>
