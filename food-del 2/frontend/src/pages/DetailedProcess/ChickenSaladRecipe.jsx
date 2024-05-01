@@ -1,10 +1,8 @@
-import React, { useState,useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale } from 'chart.js';
 import { StoreContext } from '../../Context/StoreContext';
-
 import { assets } from '../../assets/assets';
-
 import './cssforchickensalad.css';
 
 Chart.register(ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale);
@@ -15,28 +13,27 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
     console.log(id); // Print id in the console
   }, []); 
 
-
   const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
 
   const initialIngredients = [
-    { name: 'Chicken breast', quantity: 150 },
-    { name: 'Celery', quantity: 30 },
-    { name: 'Grapes', quantity: 50 },
-    { name: 'Pecans', quantity: 20 },
-    { name: 'Red onion', quantity: 10 },
-    { name: 'Mayonnaise', quantity: 30 },
-    { name: 'Sour cream', quantity: 15 },
-    { name: 'Lemon juice', quantity: 5 },
-    { name: 'Fresh dill', quantity: 2 },
-    { name: 'Salt', quantity: 0, unit: 'To taste' },
-    { name: 'Black pepper', quantity: 0, unit: 'To taste' },
+    { name: 'Chicken breast', quantity: 150, id: "663255820ef98062905555c0" },
+    { name: 'Celery', quantity: 30, id: "663256cd0ef98062905555cb" },
+    { name: 'Grapes', quantity: 50, id: "663257310ef98062905555d0" },
+    { name: 'Pecans', quantity: 20, id: "6632575a0ef98062905555d3" },
+    { name: 'Red onion', quantity: 10, id: "6632578a0ef98062905555d6" },
+    { name: 'Mayonnaise', quantity: 30, id: "663257b60ef98062905555d9" },
+    { name: 'Sour cream', quantity: 15, id: "663257e40ef98062905555dc" },
+    { name: 'Lemon juice', quantity: 5, id: "663258240ef98062905555df" },
+    { name: 'Fresh dill', quantity: 2, id: "663258520ef98062905555e2" },
+    { name: 'Salt', quantity: 0, unit: 'To taste', id: "66325b1b0ef980629055564b" },
+    { name: 'Black pepper', quantity: 0, unit: 'To taste', id: "66325b480ef9806290555653" },
   ];
   
 
   const [ingredients, setIngredients] = useState(initialIngredients);
   const [servingSize, setServingSize] = useState(1);
   const [nutrientPieChart, setNutrientPieChart] = useState(null);
-  
+
   const nutrientData = {
     'chicken breast': { protein: 31, carbs: 0, fat: 3.6 },
     'celery': { protein: 0.7, carbs: 3, fat: 0.2 },
@@ -47,6 +44,21 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
     'sour cream': { protein: 1.4, carbs: 2.1, fat: 19.4 },
     'lemon juice': { protein: 0.4, carbs: 6.9, fat: 0.2 },
     'dill': { protein: 3.5, carbs: 7, fat: 1.1 },
+  };
+
+  const addAllIngredients = () => {
+    ingredients.forEach((ingredient) => {
+      // Add each ingredient to the cart
+      addToCart(ingredient.id);
+      // Send ingredients details to the backend
+      // axios.post(url + "/api/ingredients", { ingredient })
+      //   .then((response) => {
+      //     console.log("Ingredients details sent to backend:", response.data);
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error sending ingredients details to backend:", error);
+      //   });
+    });
   };
 
   const addIngredient = () => {
@@ -232,7 +244,7 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
             Reset
           </button>
 
-          <button className='add' onClick={() => addToCart(("662e998ecea12a61e9fa4c6c"))}>Add to Cart</button>
+          <button className='add' onClick={() => addAllIngredients(("662e998ecea12a61e9fa4c6c"))}>Add to Cart</button>
           
           {/* {!cartItems[id] ? (
                     <img className='add' onClick={() => addToCart(id)} src={assets.add_icon_white} alt='Add to Cart' />

@@ -31,7 +31,7 @@ const HyderabadiChickenBiryani = () => {
   ];
 
   const [count, setCount] = useState(1);
-  const [loading, setLoading] = useState(true);  // Loading delay state
+  const [loading, setLoading] = useState(true);
   const [ingredients, setIngredients] = useState(
     initialIngredients.map((ingredient) => ({
       ...ingredient,
@@ -44,15 +44,15 @@ const HyderabadiChickenBiryani = () => {
     chicken: { protein: 27, carbs: 0, fat: 14 },
     yogurt: { protein: 10, carbs: 5, fat: 3.5 },
     'ground spices': { protein: 0.5, carbs: 1.2, fat: 0.5 },
-    'salt': { protein: 0, carbs: 0, fat: 0 },
+    salt: { protein: 0, carbs: 0, fat: 0 },
     'lemon juice': { protein: 0.4, carbs: 6.9, fat: 0.2 },
     'ginger garlic paste': { protein: 2, carbs: 14, fat: 0.5 },
     'basmati rice': { protein: 3.5, carbs: 77, fat: 0.5 },
     'whole spices': { protein: 1.5, carbs: 5, fat: 0.5 },
     'saffron water': { protein: 0, carbs: 0.3, fat: 0 },
     'fried onions': { protein: 2, carbs: 11, fat: 3 },
-    'herbs': { protein: 2, carbs: 5, fat: 0.2 },
-    'ghee': { protein: 0, carbs: 0, fat: 99 },
+    herbs: { protein: 2, carbs: 5, fat: 0.2 },
+    ghee: { protein: 0, carbs: 0, fat: 99 },
   };
 
   const calculateNutrients = () => {
@@ -84,8 +84,9 @@ const HyderabadiChickenBiryani = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1500);  // Introduce a delay
-    calculateNutrients();  // Re-calculate nutrients when ingredients change
+    const timer = setTimeout(() => setLoading(false), 1500);
+    calculateNutrients();
+    return () => clearTimeout(timer);
   }, [ingredients]);
 
   const handleCountChange = (e) => {
@@ -101,6 +102,12 @@ const HyderabadiChickenBiryani = () => {
     }
   };
 
+  const handleIngredientChange = (index, key, value) => {
+    const updatedIngredients = [...ingredients];
+    updatedIngredients[index][key] = value;
+    setIngredients(updatedIngredients);
+  };
+
   const removeIngredient = (index) => {
     const updatedIngredients = ingredients.filter((_, i) => i !== index);
     setIngredients(updatedIngredients);
@@ -110,7 +117,7 @@ const HyderabadiChickenBiryani = () => {
     <div className="container">
       <h1>Hyderabadi Chicken Biryani</h1>
       {loading ? (
-        <p>Loading...</p>  
+        <p>Loading...</p>
       ) : (
         <>
           <div className="image-container">
@@ -138,7 +145,7 @@ const HyderabadiChickenBiryani = () => {
                 />
               </div>
 
-              <table className="ingredients-table"> 
+              <table className="ingredients-table">
                 <thead>
                   <tr>
                     <th>Ingredient</th>
@@ -153,7 +160,9 @@ const HyderabadiChickenBiryani = () => {
                         <input
                           type="text"
                           value={ingredient.name}
-                          onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}
+                          onChange={(e) =>
+                            handleIngredientChange(index, 'name', e.target.value)
+                          }
                         />
                       </td>
                       <td>
@@ -161,11 +170,19 @@ const HyderabadiChickenBiryani = () => {
                           type="number"
                           min="0"
                           value={ingredient.quantity}
-                          onChange={(e) => handleIngredientChange(index, 'quantity', parseFloat(e.target.value))}
+                          onChange={(e) =>
+                            handleIngredientChange(
+                              index,
+                              'quantity',
+                              parseFloat(e.target.value)
+                            )
+                          }
                         />
                       </td>
                       <td>
-                        <button onClick={() => removeIngredient(index)}>Remove</button>  
+                        <button onClick={() => removeIngredient(index)}>
+                          Remove
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -174,29 +191,35 @@ const HyderabadiChickenBiryani = () => {
 
               <button
                 className="add-ingredient"
-                onClick={() => setIngredients([...ingredients, { name: '', base_quantity: 0 }])}
+                onClick={() =>
+                  setIngredients([...ingredients, { name: '', base_quantity: 0 }])
+                }
               >
                 Add Ingredient
               </button>
 
               <button
-            className="reset-button"
-            onClick={() => {
-              setIngredients(
-                initialIngredients.map((ingredient) => ({
-                  ...ingredient,
-                  quantity: ingredient.base_quantity,
-                }))
-              );
-              setCount(1);  
-            }}
-          >
-            Reset
-          </button>
+                className="reset-button"
+                onClick={() => {
+                  setIngredients(
+                    initialIngredients.map((ingredient) => ({
+                      ...ingredient,
+                      quantity: ingredient.base_quantity,
+                    }))
+                  );
+                  setCount(1);
+                }}
+              >
+                Reset
+              </button>
             </div>
 
             <div className="nutrients-info">
-              {nutrientPieChart ? <Pie data={nutrientPieChart} /> : <p>No Data</p>}  
+              {nutrientPieChart ? (
+                <Pie data={nutrientPieChart} />
+              ) : (
+                <p>No Data</p>
+              )}
             </div>
           </div>
 
@@ -204,19 +227,24 @@ const HyderabadiChickenBiryani = () => {
             <h2>Method:</h2>
             <div className="method-steps">
               <p>
-                <strong>Marination:</strong> Combine chicken with yogurt, ground spices, salt, lemon juice, and ginger garlic paste.
+                <strong>Marination:</strong> Combine chicken with yogurt, ground
+                spices, salt, lemon juice, and ginger garlic paste.
               </p>
               <p>
-                <strong>Rice Preparation:</strong> Cook basmati rice with whole spices and salt until it's 70-80% cooked.
+                <strong>Rice Preparation:</strong> Cook basmati rice with whole
+                spices and salt until it's 70-80% cooked.
               </p>
               <p>
-                <strong>Layering:</strong> Add a layer of marinated chicken, then a layer of partially cooked rice.
+                <strong>Layering:</strong> Add a layer of marinated chicken, then
+                a layer of partially cooked rice.
               </p>
               <p>
-                <strong>Cooking (Dum):</strong> Seal the pot with a tight lid or dough to retain steam. Cook on low flame for about 20-25 minutes.
+                <strong>Cooking (Dum):</strong> Seal the pot with a tight lid or
+                dough to retain steam. Cook on low flame for about 20-25 minutes.
               </p>
               <p>
-                <strong>Garnishing:</strong> Garnish with fried onions, chopped herbs, and serve hot.
+                <strong>Garnishing:</strong> Garnish with fried onions, chopped
+                herbs, and serve hot.
               </p>
             </div>
           </div>
