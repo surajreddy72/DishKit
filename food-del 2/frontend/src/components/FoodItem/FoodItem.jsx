@@ -14,8 +14,17 @@ const FoodItem = ({ image, name, price, desc, id }) => {
         } else if (name === 'Chicken Salad') {
             window.location.href = '/ChickenSaladRecipe';
         } else if (name === 'Panner Biryani') {
-            window.location.href = '/PannerBiryani';
-        }else {
+            window.location.href = '/PannerBiryani';}
+         else if (name === 'Chicken Sandwich') {
+                window.location.href = '/ChickenSandwichRecipe';
+        } else if (name === 'Veg Salad') {
+            window.location.href = 'VegetableSaladRecipe';
+         }
+         else if (name === 'Garlic Mushroom') {
+            window.location.href = 'GarlicMushroomRecipe';
+         }
+        
+        else {
             // You can perform any other actions here based on the clicked item
         }
     }
