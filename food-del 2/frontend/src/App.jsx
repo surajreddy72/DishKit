@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify/Verify';
 import HyderabadiChickenBiryani from "./pages/DetailedProcess/HyderabadiChickenBiryani"
 import ChickenSaladRecipe from "./pages/DetailedProcess/ChickenSaladRecipe"
+import PannerBiryani from "./pages/DetailedProcess/PannerBiryani.jsx"
 
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
           <Route path='/verify' element={<Verify />}/>
           <Route path = "/HyderabadiChickenBiryani" element = {<HyderabadiChickenBiryani/>}/>
           <Route path = "/ChickenSaladRecipe" element = {<ChickenSaladRecipe/>}/>
+          <Route path = "/PannerBiryani" element = {<PannerBiryani/>}/>
         </Routes>
       </div>
       <Footer />

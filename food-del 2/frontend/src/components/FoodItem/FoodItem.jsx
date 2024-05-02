@@ -13,7 +13,9 @@ const FoodItem = ({ image, name, price, desc, id }) => {
             window.location.href = '/HyderabadiChickenBiryani'; 
         } else if (name === 'Chicken Salad') {
             window.location.href = '/ChickenSaladRecipe';
-        } else {
+        } else if (name === 'Panner Biryani') {
+            window.location.href = '/PannerBiryani';
+        }else {
             // You can perform any other actions here based on the clicked item
         }
     }

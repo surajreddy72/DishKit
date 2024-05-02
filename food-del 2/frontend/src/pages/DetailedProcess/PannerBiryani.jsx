@@ -282,8 +282,8 @@ const PannerBiryani = ({ image, name, price, desc, id }) => {
       <div className="video-container mt-12">
         <h2 className="text-3xl font-bold text-gray-800 mb-6">Video Tutorial</h2>
         <iframe
-          src="https://youtu.be/f0C96ir-1Qs?si=_w43zfzw0h2EbEPa"
-          frameBorder="0"
+          src="https://www.youtube.com/watch?v=f0C96ir-1Qs"
+          title="YouTube video player"
           allowFullScreen
         ></iframe>
       </div>

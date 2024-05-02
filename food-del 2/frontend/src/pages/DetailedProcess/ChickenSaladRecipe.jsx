@@ -118,6 +118,9 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
   return (
     <div className="container">
       <h1 className="text-4xl font-bold text-gray-800 mb-8">The Best Chicken Salad Recipe</h1>
+      <div className="image-container">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/delish-230228-chicken-salad-001-ab-web-index-64148d4479899.jpg?crop=0.888888888888889xw:1xh;center,top&resize=1200:*" alt="Chicken Salad" className="top-image" />
+      </div>
 
       <div className="mb-8">
         <p className="text-lg text-gray-700 mb-4">
