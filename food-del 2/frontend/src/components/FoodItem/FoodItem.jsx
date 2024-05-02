@@ -9,18 +9,15 @@ const FoodItem = ({ image, name, price, desc, id }) => {
 
     const handleClick = () => {
         console.log(`Clicked on item: ${name}`); // Log the clicked item's name
-        if (name === 'Biryani') {
+        if (name === 'Chicken Biryani') {
             window.location.href = '/HyderabadiChickenBiryani'; 
-        } else {
-            // You can perform any other actions here based on the clicked item
-        }
-        if (name === 'Chicken Salad') {
-            // Navigate to another page
-            window.location.href = '/ChickenSaladRecipe'; // Change '/other-page' to the actual URL of the other page
+        } else if (name === 'Chicken Salad') {
+            window.location.href = '/ChickenSaladRecipe';
         } else {
             // You can perform any other actions here based on the clicked item
         }
     }
+    
 
     return (
         <div className='food-item'>

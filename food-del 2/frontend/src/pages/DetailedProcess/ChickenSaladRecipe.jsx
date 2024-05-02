@@ -4,6 +4,7 @@ import { Chart, ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale }
 import { StoreContext } from '../../Context/StoreContext';
 import { assets } from '../../assets/assets';
 import './cssforchickensalad.css';
+import { toast } from 'react-toastify';
 
 Chart.register(ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale);
 
@@ -16,17 +17,17 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
   const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
 
   const initialIngredients = [
-    { name: 'Chicken breast', quantity: 150, id: "663255820ef98062905555c0" },
-    { name: 'Celery', quantity: 30, id: "663256cd0ef98062905555cb" },
-    { name: 'Grapes', quantity: 50, id: "663257310ef98062905555d0" },
-    { name: 'Pecans', quantity: 20, id: "6632575a0ef98062905555d3" },
-    { name: 'Red onion', quantity: 10, id: "6632578a0ef98062905555d6" },
-    { name: 'Mayonnaise', quantity: 30, id: "663257b60ef98062905555d9" },
-    { name: 'Sour cream', quantity: 15, id: "663257e40ef98062905555dc" },
-    { name: 'Lemon juice', quantity: 5, id: "663258240ef98062905555df" },
-    { name: 'Fresh dill', quantity: 2, id: "663258520ef98062905555e2" },
-    { name: 'Salt', quantity: 0, unit: 'To taste', id: "66325b1b0ef980629055564b" },
-    { name: 'Black pepper', quantity: 0, unit: 'To taste', id: "66325b480ef9806290555653" },
+    { name: 'Chicken breast', quantity: 150, id: "6633ce6bf3882886dda8b588" },
+    { name: 'Celery', quantity: 30, id: "6633ce94f3882886dda8b58c" },
+    { name: 'Grapes', quantity: 50, id: "6633d050f3882886dda8b5a5" },
+    { name: 'Pecans', quantity: 20, id: "6633d07ef3882886dda8b5a8" },
+    { name: 'Red onion', quantity: 10, id: "6633cfaaf3882886dda8b595" },
+    { name: 'Mayonnaise', quantity: 30, id: "6633cff3f3882886dda8b59b" },
+    { name: 'Sour cream', quantity: 15, id: "6633d0b1f3882886dda8b5ad" },
+    { name: 'Lemon juice', quantity: 5, id: "6633cfd1f3882886dda8b598" },
+    { name: 'Fresh dill', quantity: 2, id: "6633d09af3882886dda8b5ab" },
+    { name: 'Salt', quantity: 0, unit: 'To taste', id: "6633cefaf3882886dda8b591" },
+    { name: 'Black pepper', quantity: 0, unit: 'To taste', id: "6633cebbf3882886dda8b58e" },
   ];
   
 
@@ -59,6 +60,7 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
       //     console.error("Error sending ingredients details to backend:", error);
       //   });
     });
+    toast.success("Items added to cart");
   };
 
   const addIngredient = () => {
