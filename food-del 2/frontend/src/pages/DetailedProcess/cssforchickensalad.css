@@ -70,3 +70,21 @@ body {
     cursor: pointer;
     margin-bottom: 20px;
   }
+
+  .image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Adds space between the image and the title */
+  }
+  
+  .top-image {
+    width: 90%; /* Adjust based on your design needs */
+    max-width: 450px; /* Ensures the image is not too large */
+    border-radius: 8px; /* Optional: rounds the corners of the image */
+    transition: transform 0.3s ease-in-out; /* Smooth transition for the hover effect */
+  }
+  
+  .top-image:hover {
+    transform: scale(1.05); /* Slightly enlarges the image on hover */
+  }
