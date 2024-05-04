@@ -131,6 +131,7 @@ const HyderabadiChickenBiryani = () => {
           <div className="image-container">
             <img
               src="https://www.potsandpans.in/cdn/shop/articles/biryani_banner_2048x.png?v=1666954821"
+              // src = "https://t3.ftcdn.net/jpg/07/17/83/54/240_F_717835431_78JKCIABxnoXXlY5HNKJhfHE9PJBA9NA.jpg"
               alt="Hyderabadi Chicken Biryani"
               className="main-image"
             />

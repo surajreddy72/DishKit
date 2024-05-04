@@ -13,6 +13,9 @@ import Verify from './pages/Verify/Verify';
 import HyderabadiChickenBiryani from "./pages/DetailedProcess/HyderabadiChickenBiryani"
 import ChickenSaladRecipe from "./pages/DetailedProcess/ChickenSaladRecipe"
 import PannerBiryani from "./pages/DetailedProcess/PannerBiryani.jsx"
+import ChickenSandwichRecipe from './pages/DetailedProcess/ChickenSandwichRecipe'
+import VegetableSaladRecipe from './pages/DetailedProcess/VegetableSaladRecipe'
+import GarlicMushroomRecipe from './pages/DetailedProcess/GarlicMushroomRecipe'
 
 
 const App = () => {
@@ -34,6 +37,10 @@ const App = () => {
           <Route path = "/HyderabadiChickenBiryani" element = {<HyderabadiChickenBiryani/>}/>
           <Route path = "/ChickenSaladRecipe" element = {<ChickenSaladRecipe/>}/>
           <Route path = "/PannerBiryani" element = {<PannerBiryani/>}/>
+          <Route path = "/ChickenSandwichRecipe" element = {<ChickenSandwichRecipe/>}/>
+          <Route path = "/VegetableSaladRecipe" element = {<VegetableSaladRecipe/>}/>
+          <Route path = "/GarlicMushroomRecipe" element = {<GarlicMushroomRecipe/>}/>
+
         </Routes>
       </div>
       <Footer />
