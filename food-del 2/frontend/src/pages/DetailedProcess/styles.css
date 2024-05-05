@@ -3,7 +3,6 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f4f4f4;
 }
 
 /* Headings */
@@ -30,8 +29,7 @@ p {
 }
 
 /* Lists (Ordered and Unordered) */
-ul,
-ol {
+ul, ol {
   padding-left: 20px;
   margin-bottom: 20px;
 }
@@ -56,8 +54,7 @@ table {
   border-collapse: collapse;
 }
 
-th,
-td {
+th, td {
   padding: 10px;
   border: 1px solid #ddd;
   text-align: left;
@@ -112,11 +109,9 @@ a:hover {
 }
 
 /* Buttons */
-.remove-button,
-.reset-button {
+.remove-button, .reset-button {
   padding: 8px 16px;
   font-size: 1rem;
-  /* font-weight: bold; */
   color: #000000;
   background-color: #e6e6e6;
   border: none;
@@ -125,13 +120,30 @@ a:hover {
   transition: background-color 0.3s ease;
 }
 
-/* .remove-button:hover,
-.reset-button:hover {
-  background-color: #c82333;
-} */
-
-/* Pie Chart */
+/* Pie Chart and Table Layout */
 .nutrients-info {
-  max-width: 400px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.pie-chart {
+  flex: 1;
+}
+
+.nutrients-table {
+  flex: 1;
+}
+
+/* Image and Text Layout */
+.image-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.image-text {
+  text-align: center;
 }
