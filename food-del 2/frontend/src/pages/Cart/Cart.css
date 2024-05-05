@@ -97,6 +97,21 @@
     color: white;
     border-radius: 4px;
 }
+.remove-everything-button {
+    background-color: #ff5252;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .remove-everything-button:hover {
+    background-color: #ff1a1a;
+  }
+  
 
 @media(max-width:750px) {
     .cart-bottom {

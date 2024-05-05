@@ -71,13 +71,14 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
     setIngredients(ingredients.filter((_, i) => i !== index));
   };
 
-  const updateIngredientQuantities = () => {
+  const updateIngredientQuantities = (newServingSize) => {
     const updatedIngredients = ingredients.map((ingredient) => ({
       ...ingredient,
-      quantity: ingredient.unit === 'To taste' ? 0 : ingredient.quantity * servingSize,
+      quantity: ingredient.unit === 'To taste' ? 0 : (ingredient.quantity / servingSize) * newServingSize,
     }));
     setIngredients(updatedIngredients);
   };
+  
 
   useEffect(() => {
     calculateNutrients();
@@ -182,14 +183,20 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
         <div className="mb-4">
           <label htmlFor="servingSize" className="mr-2">Number of People:</label>
           <input
-            type="number"
-            id="servingSize"
-            name="servingSize"
-            min="1"
-            value={servingSize}
-            onChange={(e) => setServingSize(parseInt(e.target.value))}
-            onBlur={updateIngredientQuantities}
-          />
+          type="number"
+          id="servingSize"
+          name="servingSize"
+          min="1"
+          value={servingSize}
+          onChange={(e) => {
+            const newServingSize = parseInt(e.target.value);
+            console.log(newServingSize);
+            setServingSize(newServingSize);
+            console.log("servingsize",servingSize);
+            updateIngredientQuantities(newServingSize);
+          }}
+        />
+
         </div>
         <table>
           <thead>
@@ -234,20 +241,21 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
         </table>
         <button className="add-ingredient" onClick={addIngredient}>Add Ingredient</button>
  
-      <button
-            className="reset-button"
-            onClick={() => {
-              setIngredients(
-                initialIngredients.map((ingredient) => ({
-                  ...ingredient,
-                  quantity: ingredient.base_quantity,
-                }))
-              );
-              setCount(1);  
-            }}
-          >
-            Reset
-          </button>
+        <button
+        className="reset-button"
+        onClick={() => {
+          setIngredients(
+            initialIngredients.map((ingredient) => ({
+              ...ingredient,
+              quantity: ingredient.quantity, // Reset quantities to their initial values
+            }))
+          );
+          setServingSize(1); // Reset serving size to 1
+        }}
+      >
+        Reset
+        </button>
+
 
           <button className='add' onClick={() => addAllIngredients(("662e998ecea12a61e9fa4c6c"))}>Add to Cart</button>
           
