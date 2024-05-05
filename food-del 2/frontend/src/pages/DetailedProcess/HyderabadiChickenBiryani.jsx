@@ -31,14 +31,12 @@ const HyderabadiChickenBiryani = () => {
   ];
 
   const [count, setCount] = useState(1);
-  const [loading, setLoading] = useState(true);  // Loading delay state
   const [ingredients, setIngredients] = useState(
-    initialIngredients.map((ingredient) => ({
+    initialIngredients.map(ingredient => ({
       ...ingredient,
-      quantity: ingredient.base_quantity,
+      quantity: ingredient.base_quantity * count,
     }))
   );
-  const [nutrientPieChart, setNutrientPieChart] = useState(null);
 
   const nutrientData = {
     chicken: { protein: 27, carbs: 0, fat: 14 },
@@ -55,13 +53,13 @@ const HyderabadiChickenBiryani = () => {
     ghee: { protein: 0, carbs: 0, fat: 99 },
   };
 
-  const calculateNutrients = () => {
-    let totalProtein = 0;
-    let totalCarbs = 0;
-    let totalFat = 0;
+  const [nutrientPieChart, setNutrientPieChart] = useState(null);
 
-    ingredients.forEach((ingredient) => {
-      const nutrientInfo = nutrientData[ingredient.name.toLowerCase()];
+  const calculateNutrients = () => {
+    let totalProtein = 0, totalCarbs = 0, totalFat = 0;
+
+    ingredients.forEach(ingredient => {
+      const nutrientInfo = nutrientData[ingredient.name.toLowerCase().replace(/ /g, '')];
       if (nutrientInfo) {
         const servingSize = ingredient.quantity / 100;
         totalProtein += nutrientInfo.protein * servingSize;
@@ -74,7 +72,7 @@ const HyderabadiChickenBiryani = () => {
       labels: ['Protein', 'Carbohydrates', 'Fats'],
       datasets: [
         {
-          data: [totalProtein, totalCarbs, totalFat],
+          data: [totalProtein.toFixed(2), totalCarbs.toFixed(2), totalFat.toFixed(2)],
           backgroundColor: ['#4CAF50', '#FFC107', '#FF5722'],
         },
       ],
@@ -84,8 +82,7 @@ const HyderabadiChickenBiryani = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1500);  // Introduce a delay
-    calculateNutrients();  // Re-calculate nutrients when ingredients change
+    calculateNutrients();
   }, [ingredients]);
 
   const handleCountChange = (e) => {
@@ -93,7 +90,7 @@ const HyderabadiChickenBiryani = () => {
     if (newCount > 0) {
       setCount(newCount);
       setIngredients(
-        ingredients.map((ingredient) => ({
+        initialIngredients.map(ingredient => ({
           ...ingredient,
           quantity: ingredient.base_quantity * newCount,
         }))
@@ -103,44 +100,38 @@ const HyderabadiChickenBiryani = () => {
 
   const handleIngredientChange = (index, field, value) => {
     const updatedIngredients = [...ingredients];
-    if (field === 'quantity') {
-      updatedIngredients[index].base_quantity = value / count;  // Adjust base_quantity when changing quantity
-    }
     updatedIngredients[index][field] = value;
     setIngredients(updatedIngredients);
   };
 
   const addIngredient = () => {
-    setIngredients([...ingredients, { name: '', base_quantity: 0, quantity: 0 }]);  // Add default quantity for new ingredient
+    setIngredients([...ingredients, { name: '', base_quantity: 0, quantity: 0 }]);
   };
 
   const removeIngredient = (index) => {
-    const updatedIngredients = ingredients.filter((_, i) => i !== index);  // Remove ingredient by index
-    setIngredients(updatedIngredients);
+    setIngredients(ingredients.filter((_, i) => i !== index));
   };
-
   return (
 
 
     <div className="container">
       <h1>Hyderabadi Chicken Biryani</h1>
-      {loading ? (
-        <p>Loading...</p>  
-      ) : (
+      
         <>
           <div className="image-container">
             <img
-              src="https://www.potsandpans.in/cdn/shop/articles/biryani_banner_2048x.png?v=1666954821"
-              // src = "https://t3.ftcdn.net/jpg/07/17/83/54/240_F_717835431_78JKCIABxnoXXlY5HNKJhfHE9PJBA9NA.jpg"
+              // src="https://www.potsandpans.in/cdn/shop/articles/biryani_banner_2048x.png?v=1666954821"
+              src = "https://t3.ftcdn.net/jpg/07/17/83/54/240_F_717835431_78JKCIABxnoXXlY5HNKJhfHE9PJBA9NA.jpg"
               alt="Hyderabadi Chicken Biryani"
               className="main-image"
             />
-            <p className="image-caption">
-              A flavorful rice dish made with spices, rice, and chicken.
-            </p>
+            
           </div>
           <div className="mb-8">
   <p className="text-lg text-gray-700 mb-4">
+  <p className="image-caption">
+              A flavorful rice dish made with spices, rice, and chicken.
+            </p>
     Hyderabadi Chicken Biryani is a classic Indian dish known for its fragrant basmati rice, succulent chicken, and rich spices. It's a culinary delight that's both hearty and flavorful.
   </p>
   <p className="text-lg text-gray-700">
@@ -287,9 +278,14 @@ const HyderabadiChickenBiryani = () => {
             ></iframe>
           </div>
         </>
-      )}
+      )
     </div>
   );
 };
 
 export default HyderabadiChickenBiryani;
+
+
+
+// src="https://www.potsandpans.in/cdn/shop/articles/biryani_banner_2048x.png?v=1666954821"
+// src = "https://t3.ftcdn.net/jpg/07/17/83/54/240_F_717835431_78JKCIABxnoXXlY5HNKJhfHE9PJBA9NA.jpg"
