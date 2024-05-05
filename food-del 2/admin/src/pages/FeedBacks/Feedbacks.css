@@ -1,0 +1,51 @@
+/* Feedbacks.css */
+.feedbacks {
+    max-width: 800px;
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  table {
+    width: 200%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #cacaca;
+    outline: 1px solid #999;
+    font-size: 13px;
+    background-color: #f9f9f9;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  tbody tr:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Responsive styling for smaller screens */
+  @media screen and (max-width: 600px) {
+    table {
+      display: block;
+      overflow-x: auto;
+    }
+    
+    th, td {
+      display: block;
+      width: 100%;
+    }
+    
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+  }
