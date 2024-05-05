@@ -14,6 +14,9 @@ const Cart = () => {
     });
   };
 
+  // Check if there are any items in the cart
+  const hasItemsInCart = Object.values(cartItems).some(quantity => quantity > 0);
+
   return (
     <div className='cart'>
       <div className="cart-items">
@@ -39,7 +42,7 @@ const Cart = () => {
             );
           }
         })}
-        <button className="remove-everything-button" onClick={removeEverything}>Remove Everything</button>
+        {hasItemsInCart && <button className="remove-everything-button" onClick={removeEverything}>Remove Everything</button>}
       </div>
       <div className="cart-bottom">
         <div className="cart-total">
