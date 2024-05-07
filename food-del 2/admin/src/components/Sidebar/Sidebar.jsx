@@ -21,7 +21,7 @@ const Sidebar = () => {
         </NavLink>
         <NavLink to='/feedback' className="sidebar-option">
             <img src={assets.feeback_icon} alt="" />
-            <p>Feedbacks</p>
+            <p>Analysis</p>
         </NavLink>
 
       </div>

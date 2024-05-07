@@ -5,8 +5,8 @@ import re
 app = Flask(__name__)
 
 # Load the model and vectorizer
-model = joblib.load('Model.pkl')  # Replace with the correct path
-vectorizer = joblib.load('cv_Model.pkl')  # Replace with the correct path
+model = joblib.load('Model.pkl')  
+vectorizer = joblib.load('cv_Model.pkl')  
 
 def clean_text(text):
     """Preprocess text for sentiment analysis model."""
