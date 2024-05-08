@@ -3,6 +3,7 @@ import './MyOrders.css'
 import axios from 'axios'
 import { StoreContext } from '../../Context/StoreContext';
 import { assets } from '../../assets/assets';
+import { toast } from 'react-toastify';
 
 const MyOrders = () => {
   
@@ -17,7 +18,7 @@ const MyOrders = () => {
 
   const submitFeedback = async () => {
     if (!feedback) {
-      alert('Please enter some feedback before submitting!');
+      toast.error('Please enter some feedback before submitting!');
       return;
     }
     try {
@@ -31,11 +32,11 @@ const MyOrders = () => {
           }
         }
       );
-      alert('Feedback submitted successfully!');
+      toast.success('Feedback submitted successfully!');
       setFeedback(''); // Clear the feedback input box after submission
     } catch (error) {
       console.error('Error submitting feedback:', error);
-      alert('Failed to submit feedback: ' + error.response.data.message);
+      console.error('Failed to submit feedback: ' + error.response.data.message);
     }
   }
 
