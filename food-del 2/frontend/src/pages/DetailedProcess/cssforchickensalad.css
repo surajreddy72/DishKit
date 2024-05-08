@@ -1,74 +1,95 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  .button {
-    padding: 10px 20px;
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  .button:hover {
-    background-color: #1976D2;
-  }
-  .nutrients-info {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-  }
-  .chart-container {
-    margin-top: 20px;
-  }
-  .video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-  }
-  .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .ingredient-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  .ingredient-row input[type="text"],
-  .ingredient-row input[type="number"] {
-    margin-right: 10px;
-    padding: 5px;
-  }
-  .ingredient-row button {
-    padding: 5px 10px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  .add-ingredient {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 20px;
-  }
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0; /* Adds space around the table */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adds subtle shadow for depth */
+}
+
+th, td {
+  padding: 12px 15px; /* Larger padding for better spacing */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  background-color: #ffffff; /* Ensures rows are visibly distinct */
+}
+
+th {
+  background-color: #f0f0f0; /* Slightly darker background for headers */
+  color: #333;
+}
+
+.button, .add-ingredient, .reset-button, .add {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.button:hover, .add-ingredient:hover, .reset-button:hover, .add:hover {
+  background-color: #1976D2;
+}
+
+.button, .add {
+  background-color: #2196F3;
+  color: white;
+}
+
+.add-ingredient {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.reset-button {
+  background-color: #FF5722;
+  color: white;
+}
+
+.nutrients-info, {
+  margin-top: 200px;
+  border-radius: 5px;
+}
+
+.video-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+}
+
+.ingredient-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.ingredient-row input[type="text"], .ingredient-row input[type="number"] {
+  flex: 1; /* Allows input fields to take up appropriate space */
+  margin-right: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.ingredient-row button {
+  padding: 8px 16px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
 
 .image-container {
   width: 100%;

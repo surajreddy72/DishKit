@@ -4,6 +4,7 @@ import { Chart, ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale }
 import { StoreContext } from '../../Context/StoreContext';
 import { assets } from '../../assets/assets';
 import './cssforchickensalad.css';
+import { toast } from 'react-toastify';
 
 Chart.register(ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale);
 
@@ -16,10 +17,10 @@ const TomatoPastaRecipe = ({ image, name, price, desc, id }) => {
   const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
 
   const initialIngredients = [
-    { name: 'Pasta', quantity: 1, id: "663256cd0ef98062905555cb" },
-    { name: 'Olive oil', quantity: 1, id: "663257310ef98062905555d0" },
-    { name: 'Tomato Pasta sauce', quantity: 1, id: "6632578a0ef98062905555d6" },
-    { name: 'Cheese', quantity: 0.25, id: "663257e40ef98062905555dc" },
+    { name: 'Pasta', quantity: 1, id: "663b5e9ae4d41ef9b1f89328" },
+    { name: 'Olive oil', quantity: 1, id: "663b5ed1e4d41ef9b1f8932c" },
+    { name: 'Tomato Pasta sauce', quantity: 1, id: "663b5f15e4d41ef9b1f8932e" },
+    { name: 'Cheese', quantity: 0.25, id: "663b5f4ce4d41ef9b1f89332" },
     { name: 'Salt', quantity: 0, unit: 'To taste', id: "66325b1b0ef980629055564b" },
   ];
   
@@ -51,6 +52,7 @@ const TomatoPastaRecipe = ({ image, name, price, desc, id }) => {
       //     console.error("Error sending ingredients details to backend:", error);
       //   });
     });
+    toast.success("Items added to cart");
   };
 
   const addIngredient = () => {
@@ -187,7 +189,7 @@ const TomatoPastaRecipe = ({ image, name, price, desc, id }) => {
           </thead>
           <tbody id="ingredientList">
             {ingredients.map((ingredient, index) => (
-              <tr key={index} className="ingredient-row">
+              <tr key={index}>
                 <td>
                   <input
                     type="text"
@@ -235,7 +237,7 @@ const TomatoPastaRecipe = ({ image, name, price, desc, id }) => {
             Reset
           </button>
 
-          <button className='add' onClick={() => addAllIngredients(("662e998ecea12a61e9fa4c6c"))}>Add to Cart</button>
+          <button className='add' onClick={() => addAllIngredients(("6633c55cf3882886dda8b523"))}>Add to Cart</button>
           
           {/* {!cartItems[id] ? (
                     <img className='add' onClick={() => addToCart(id)} src={assets.add_icon_white} alt='Add to Cart' />

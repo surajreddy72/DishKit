@@ -205,7 +205,7 @@ const VegetableSaladRecipe = ({ image, name, price, desc, id }) => {
           </thead>
           <tbody id="ingredientList">
             {ingredients.map((ingredient, index) => (
-              <tr key={index} className="ingredient-row">
+              <tr key={index}>
                 <td>
                   <input
                     type="text"

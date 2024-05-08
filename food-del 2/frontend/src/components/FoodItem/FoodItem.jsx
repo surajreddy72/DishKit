@@ -18,16 +18,16 @@ const FoodItem = ({ image, name, price, desc, id }) => {
          else if (name === 'Chicken Sandwich') {
                 window.location.href = '/ChickenSandwichRecipe';
         } else if (name === 'Veg Salad') {
-            window.location.href = 'VegetableSaladRecipe';
+            window.location.href = '/VegetableSaladRecipe';
          }
          else if (name === 'Garlic Mushroom') {
-            window.location.href = 'GarlicMushroomRecipe';
+            window.location.href = '/GarlicMushroomRecipe';
          }
          else if (name === 'Tomato Pasta') {
-            window.location.href = 'TomatoPastaRecipe';
+            window.location.href = '/TomatoPastaRecipe';
          }
          else if (name === 'Mix Veg Pulav') {
-            window.location.href = 'MixVegPulav';
+            window.location.href = '/MixVegPulav';
          }
         else {
             // You can perform any other actions here based on the clicked item
@@ -51,7 +51,8 @@ const FoodItem = ({ image, name, price, desc, id }) => {
             </div>
             <div className='food-item-info' onClick={handleClick}>
                 <div className='food-item-name-rating'>
-                    <p>{name}</p> <img src={assets.rating_starts} alt='' />
+                    <p>{name}</p> 
+                    {/* <img src={assets.rating_starts} alt='' /> */}
                 </div>
                 <p className='food-item-desc'>{desc}</p>
                 <p className='food-item-price'>₹{price}</p>
