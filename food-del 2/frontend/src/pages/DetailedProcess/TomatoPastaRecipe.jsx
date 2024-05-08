@@ -7,7 +7,7 @@ import './cssforchickensalad.css';
 
 Chart.register(ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale);
 
-const GarlicMushroomRecipe = ({ image, name, price, desc, id }) => {
+const TomatoPastaRecipe = ({ image, name, price, desc, id }) => {
 
   useEffect(() => {
     console.log(id); // Print id in the console
@@ -16,17 +16,11 @@ const GarlicMushroomRecipe = ({ image, name, price, desc, id }) => {
   const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
 
   const initialIngredients = [
-    { name: 'Mushrooms', quantity: 20, id: "663255820ef98062905555c0" },
-    { name: 'Oninons sliced', quantity: 0.5, id: "663256cd0ef98062905555cb" },
-    { name: 'Cumin', quantity: 0, id: "663257310ef98062905555d0" },
-    { name: 'Oil', quantity: 2, id: "6632575a0ef98062905555d3" },
-    { name: 'Garlic', quantity: 5, id: "6632578a0ef98062905555d6" },
-    { name: 'Dried red chillies', quantity: 5, id: "663257b60ef98062905555d9" },
-    { name: 'Vinegar', quantity: 0.75, id: "663257e40ef98062905555dc" },
-    { name: 'Onion rings', quantity: 1, id: "663258240ef98062905555df" },
-    { name: 'Chillipowder', quantity: 0.25, id: "663258520ef98062905555e2" },
+    { name: 'Pasta', quantity: 1, id: "663256cd0ef98062905555cb" },
+    { name: 'Olive oil', quantity: 1, id: "663257310ef98062905555d0" },
+    { name: 'Tomato Pasta sauce', quantity: 1, id: "6632578a0ef98062905555d6" },
+    { name: 'Cheese', quantity: 0.25, id: "663257e40ef98062905555dc" },
     { name: 'Salt', quantity: 0, unit: 'To taste', id: "66325b1b0ef980629055564b" },
-    { name: 'Sugar', quantity: 0, unit: 'To taste', id: "66325b480ef9806290555653" },
   ];
   
 
@@ -35,14 +29,13 @@ const GarlicMushroomRecipe = ({ image, name, price, desc, id }) => {
   const [nutrientPieChart, setNutrientPieChart] = useState(null);
 
   const nutrientData = {
-    'mushrooms': { protein: 3.1, carbs: 3.3, fat: 0.3 },
-    'garlic': { protein: 0.9, carbs: 5.3, fat: 0.2 },
-    'onion': { protein: 1.1, carbs: 9.3, fat: 0.1 },
-    'dried red chili': { protein: 0.6, carbs: 18, fat: 0.3 },
-    'vinegar': { protein: 0, carbs: 0.04, fat: 0 },
+    'pasta': { protein: 13, carbs: 74, fat: 1.5 },
+    'tomato sauce': { protein: 1.2, carbs: 6.7, fat: 1.3 },
     'olive oil': { protein: 0, carbs: 0, fat: 13.5 },
-    'cumin': { protein: 0.5, carbs: 22, fat: 0.9 },
+    'cheese': { protein: 7, carbs: 8, fat: 29 },
+    'salt': { protein: 0, carbs: 0, fat: 0 },
   };
+  
   
 
   const addAllIngredients = () => {
@@ -115,18 +108,18 @@ const GarlicMushroomRecipe = ({ image, name, price, desc, id }) => {
   return (
     
     <div className="container">
-      <h1 className="text-4xl font-bold text-gray-800 mb-8">The Best Garlic Mushroom Recipe</h1>
+      <h1 className="text-4xl font-bold text-gray-800 mb-8">Tomato Pasta Recipe</h1>
       <div className="image-container">
-  <img src="https://t3.ftcdn.net/jpg/07/01/70/00/240_F_701700089_awtYskdprlT0JDD0hDrBUOhfRfV0Fg9h.jpg" alt="Garlic mushroom" className="top-image" />
+  <img src="https://t4.ftcdn.net/jpg/06/36/68/01/240_F_636680184_AzOXroWEmzDHrXDsrpFCK8j8Z9nIA2Zw.jpg" alt="Chicken Salad" className="top-image" />
 </div>
 
 
       <div className="mb-8">
         <p className="text-lg text-gray-700 mb-4">
-          Button mushrooms sauteed in Indian style garlic sauce.
+        Tomato Pasta in Red Sauce is one of the simplest and easiest pasta to make at home. In this recipe, Tomato Pasta is prepared by first cooking Penne or Fusilli Pasta to Al Dente perfection and then cooking them with homemade red tomato pasta sauce.
         </p>
         <p className="text-lg text-gray-700">
-          These hot and spicy garlic mushrooms go good with just anything - plain rice, inside a sandwich bread or wrap, fried rice, noodles or serve as a starter. It is made with very few ingredients and tastes super delicious.
+        This recipe also explains how to make Tomato Pasta Sauce from scratch using fresh tomatoes, onion, garlic, black pepper powder, olive oil and other seasonings Watch the <strong>video tutorial</strong> and see how simple it is.
         </p>
       </div>
 
@@ -134,44 +127,37 @@ const GarlicMushroomRecipe = ({ image, name, price, desc, id }) => {
         <div>
           <h2 className="text-3xl font-bold text-gray-800 mb-6">Ingredients</h2>
           <ul className="list-disc pl-8 mb-8 space-y-2 text-gray-700 text-lg">
-            <li>Mushroom - we use 1.5 cup of mushrooms either chopped or sliced</li>
-            <li>Onions - Half a cup finely chopped Onions </li>
-            <li>Cumin - Half a tea spoon cumin also known as jeera or 1 strand of mace/javitri</li>
-            <li>Oil - One to Two tablespoon oil is sufficient, olive is preferred over butte</li>
-            <li>Garlic - Five large garlic cloves or minced is needed, depends on the size of the garlic</li>
+            <li>Pasta - 1.5 cups of raw penne pasta or fusilli pasta.</li>
+            <li>Oil - One tablespoon oil, which is optional.</li>
+            <li>Tomato Pasta Sauce - Made with an approximate of six large tomatoes.</li>
           </ul>
 
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">For Taste</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">For taste</h2>
           <ul className="list-disc pl-8 mb-8 space-y-2 text-gray-700 text-lg">
-            <li>Dried red chillies - 5 dried red chillies can be used, chilli powder can also be used but will result in a less spicy variety</li>
-            <li>Vinegar - Three fourth tablespoon of apple cider vinegar or lemon juice</li>
-            <li>Sugar - Half a teaspoon of sugar which is prefered to be organic or jaggery is added for sweetness</li>
-            <li>Onion rings - A few onion rings or slices can be added for decoration</li>
-            <li>Coriander leaves - 2 tablespoons of chopped coriander leaves can be added</li>
-            <li>Salt and Pepper - to taste.</li>
+            <li>Salt - to taste.</li>
           </ul>
         </div>
 
         <div>
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">How to Make Garlic Mushroom</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">How to Make Tomato Pasta</h2>
           <ol className="list-decimal pl-8 mb-8 space-y-4 text-gray-700 text-lg">
             <li>
-              <strong>Heat the pan with oil</strong> - When the oil is hot enough, add mace or cumin
+              <strong>Boil raw pasta</strong> - Boil approximate of six cups water in a large pot/pan over medium flame. Add raw pasta, 1 teaspoon oil and salt.
             </li>
             <li>
-              <strong>After waiting 30 secs</strong> - Add onions and saute until golden. While the onions fry, rinse and slice the mushrooms, then add in the garlic sauce and saute for 2 to 3 mins without burning.
+              <strong>Cooking pasta</strong> - Stir well and let them boil until pastas are aldente. It will take around 10-12 minutes. Stir in between occasionally to prevent sticking.
             </li>
             <li>
-              <strong>Make sure the raw smell of garlic has gone and the mixture turns aromatic</strong> - Add the sliced mushrooms and saute for 2 to 3 mins.
+              <strong> Checking if pasta is cooked</strong> - If the pasta is too hard or is white in the center, it is raw and requires cooking little longer. If firm to bite, the pasta is cooked.
             </li>
             <li>
-              <strong>Cover and cook on a medium to low heat until the mushrooms are cooked to your liking</strong> - Transfer the garlic mushrooms to a serving plate and garnish with coriander leaves and onions.
+              <strong>Drain the water</strong> - Drain the water by carefully transferring the cooked pasta to a large strainer.
             </li>
             <li>
-              <strong>How it can be served</strong> - Garlic mushrooms can be served as a side with basmati rice or as a stuffing in a sandwich.
+              <strong>Red tomato sauce</strong> - Add cooked pasta to the tomato sauce and mix well. Cook for 2-3 minutes. Turn off the flame.
             </li>
             <li>
-              <strong>Bonus</strong> - You can also toss some rice, noodles or spaghetti in the same pan.
+              <strong>Final touch</strong> - Garnish with the cheese and your tomato pasta is ready to be served.
             </li>
           </ol>
         </div>
@@ -270,20 +256,21 @@ const GarlicMushroomRecipe = ({ image, name, price, desc, id }) => {
             <Pie data={nutrientPieChart} />
           </div>
         ) : (
-          {/* <p>Loading nutrient information...</p> */}
+          <p>Loading nutrient information...</p>
         )}
       </div>
 
       <div className="video-container mt-12">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">Video Tutorial</h2>
-        <iframe
-          src="https://www.youtube.com/watch?v=Yu_mkN65E1I"
-          frameBorder="0"
-          allowFullScreen
-        ></iframe>
-      </div>
+    <h2 className="text-3xl font-bold text-gray-800 mb-6">Video Tutorial</h2>
+    <iframe
+      src="https://www.youtube.com/embed/NcHDxTam_uI"
+      frameBorder="0"
+      allowFullScreen
+    ></iframe>
+  </div>
+
     </div>
   );
 };
 
-export default GarlicMushroomRecipe;
+export default TomatoPastaRecipe;

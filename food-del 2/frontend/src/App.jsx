@@ -16,6 +16,8 @@ import PannerBiryani from "./pages/DetailedProcess/PannerBiryani.jsx"
 import ChickenSandwichRecipe from './pages/DetailedProcess/ChickenSandwichRecipe'
 import VegetableSaladRecipe from './pages/DetailedProcess/VegetableSaladRecipe'
 import GarlicMushroomRecipe from './pages/DetailedProcess/GarlicMushroomRecipe'
+import TomatoPastaRecipe from './pages/DetailedProcess/TomatoPastaRecipe'
+import MixVegPulav from './pages/DetailedProcess/MixVegPulav'
 
 
 const App = () => {
@@ -40,7 +42,8 @@ const App = () => {
           <Route path = "/ChickenSandwichRecipe" element = {<ChickenSandwichRecipe/>}/>
           <Route path = "/VegetableSaladRecipe" element = {<VegetableSaladRecipe/>}/>
           <Route path = "/GarlicMushroomRecipe" element = {<GarlicMushroomRecipe/>}/>
-
+          <Route path = "/TomatoPastaRecipe" element = {<TomatoPastaRecipe/>}/>
+          <Route path = "/MixVegPulav" element = {<MixVegPulav/>}/>
         </Routes>
       </div>
       <Footer />

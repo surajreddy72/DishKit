@@ -91,7 +91,7 @@ a:hover {
 /* Flex Layout */
 .flex-container {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   gap: 20px;
 }
 

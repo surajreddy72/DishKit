@@ -23,7 +23,12 @@ const FoodItem = ({ image, name, price, desc, id }) => {
          else if (name === 'Garlic Mushroom') {
             window.location.href = 'GarlicMushroomRecipe';
          }
-        
+         else if (name === 'Tomato Pasta') {
+            window.location.href = 'TomatoPastaRecipe';
+         }
+         else if (name === 'Mix Veg Pulav') {
+            window.location.href = 'MixVegPulav';
+         }
         else {
             // You can perform any other actions here based on the clicked item
         }
