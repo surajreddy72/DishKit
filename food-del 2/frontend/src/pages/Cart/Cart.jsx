@@ -8,53 +8,68 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const removeEverything = () => {
-    // Remove all items from the cart
-    Object.keys(cartItems).forEach((itemId) => {
-      removeFromCart(itemId);
-    });
+    Object.keys(cartItems).forEach(itemId => removeFromCart(itemId));
   };
 
-  // Check if there are any items in the cart
-  const hasItemsInCart = Object.values(cartItems).some(quantity => quantity > 0);
+  const hasItemsInCart = Object.values(cartItems).reduce((total, quantity) => total + quantity, 0) > 0;
 
   return (
     <div className='cart'>
       <div className="cart-items">
-        <div className="cart-items-title">
-          <p>Items</p> <p>Title</p> <p>Price</p> <p>Total</p> <p>Remove</p>
+        <div className="cart-items-header">
+          <span>Items</span>
+          <span>Title</span>
+          <span>Price</span>
+          <span>Total</span>
+          <span>Remove</span>
         </div>
-        <br />
         <hr />
-        {food_list.map((item, index) => {
-          if (cartItems[item._id] > 0) {
-            return (
-              <div key={index}>
-                <div className="cart-items-title cart-items-item">
-                  <img src={url + "/images/" + item.image} alt="" />
-                  <p>{item.name}</p>
-                  <p>₹{item.price}</p>
-                  <p>₹{item.price * cartItems[item._id]}</p>
-                  <p className='cart-items-remove-icon' onClick={() => removeFromCart(item._id)}>x</p>
+        {hasItemsInCart ? (
+          food_list.map((item, index) => {
+            if (cartItems[item._id] > 0) {
+              return (
+                <div key={index} className="cart-item">
+                  <img src={`${url}/images/${item.image}`} alt={item.name} />
+                  <span>{item.name}</span>
+                  <span>₹{item.price}</span>
+                  <span>₹{item.price * cartItems[item._id]}</span>
+                  <span className='remove-icon' onClick={() => removeFromCart(item._id)}>x</span>
+                  <hr />
                 </div>
-                <hr />
-              </div>
-            );
-          }
-        })}
-        {/* {hasItemsInCart && <button className="remove-everything-button" onClick={removeEverything}>Remove Everything</button>} */}
-      </div>
-      <div className="cart-bottom">
-        <div className="cart-total">
-          <h2>Cart Totals</h2>
-          <div>
-            <div className="cart-total-details"><p>Subtotal</p><p>₹{getTotalCartAmount()}</p></div>
-            <hr />
-            <div className="cart-total-details"><p>Delivery Fee</p><p>₹{getTotalCartAmount() === 0 ? 0 : 5}</p></div>
-            <hr />
-            <div className="cart-total-details"><b>Total</b><b>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 5}</b></div>
+              );
+            }
+            return null;
+          })
+        ) : (
+          <div className="cart-empty">
+            <p>No items in cart.</p>
           </div>
-          <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
+        )}
+        {/* {hasItemsInCart && (
+          <button className="remove-everything-button" onClick={removeEverything}>
+            Remove Everything
+          </button>
+        )} */}
+      </div>
+      <div className="cart-summary">
+        <h2>Cart Totals</h2>
+        <div className="summary-detail">
+          <span>Subtotal</span>
+          <span>₹{getTotalCartAmount()}</span>
         </div>
+        <hr />
+        <div className="summary-detail">
+          <span>Delivery Fee</span>
+          <span>₹{getTotalCartAmount() === 0 ? 0 : 5}</span>
+        </div>
+        <hr />
+        <div className="summary-detail total">
+          <strong>Total</strong>
+          <strong>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 5}</strong>
+        </div>
+        {hasItemsInCart && (
+          <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
+        )}
       </div>
     </div>
   );

@@ -46,6 +46,7 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
     'lemon juice': { protein: 0.4, carbs: 6.9, fat: 0.2 },
     'dill': { protein: 3.5, carbs: 7, fat: 1.1 },
   };
+  
 
   const addAllIngredients = () => {
     ingredients.forEach((ingredient) => {
@@ -65,6 +66,11 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
 
   const addIngredient = () => {
     setIngredients([...ingredients, { name: '', quantity: 0 }]);
+  };
+  const handleIngredientChange = (index, field, value) => {
+    const newIngredients = [...ingredients];
+    newIngredients[index][field] = value;
+    setIngredients(newIngredients);
   };
 
   const removeIngredient = (index) => {
@@ -208,7 +214,7 @@ const ChickenSaladRecipe = ({ image, name, price, desc, id }) => {
           </thead>
           <tbody id="ingredientList">
             {ingredients.map((ingredient, index) => (
-              <tr key={index} className="ingredient-row">
+              <tr key={index}>
                 <td>
                   <input
                     type="text"
