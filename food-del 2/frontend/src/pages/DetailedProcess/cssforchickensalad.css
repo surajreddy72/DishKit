@@ -25,7 +25,7 @@ body {
   .nutrients-info {
     margin-top: 20px;
     padding: 20px;
-    background-color: #a4b9a3;
+    /* background-color: #f6fff5; */
     border-radius: 5px;
   }
   .chart-container {
